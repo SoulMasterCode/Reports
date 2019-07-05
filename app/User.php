@@ -36,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function ExpenseReport()
+    {
+        return $this->hasMany(ExpenseReport::class);
+    }
+
+    public function Profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function Role()
+    {
+        return $this->hasMany(Role::class)->withTimestamps();
+    }
 }

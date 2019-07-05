@@ -23,3 +23,24 @@ Route::get('/test/2', function(){
 });
 
 Route::get('/dashboard', 'DashBoardController@index');
+Route::resource('/reports', 'ExpenseReportsController');
+Route::get('/reports/{id}/confirm', 'ExpenseReportsController@confirm_datroy');
+Route::get('reports/{report}/expenses/create', 'ExpensesController@create');
+Route::post('reports/{report}/expenses/', 'ExpensesController@store');
+
+//Send Mail
+Route::get('/reports/{report}/confirmMail', 'ExpenseReportsController@ConfirmSendMail');
+Route::post('/reports/{report}/sendMail', 'ExpenseReportsController@sendMail');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//Profile Routes
+Route::get('/profile/{profile}', 'ProfileController@edit');
+Route::put('/profile/{profile}/update', 'ProfileController@update');
+
+//Middleware
+// Route::get('/', function($user){
+//     //
+// })->middleware('profile_complete');
